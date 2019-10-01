@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on yugalarora.com</title>
+    <link>http://example.org/posts/</link>
+    <description>Recent content in Posts on yugalarora.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Sep 2019 23:23:18 +0530</lastBuildDate>
+    
+	<atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker getting started</title>
+      <link>http://example.org/posts/docker-getting-started/</link>
+      <pubDate>Thu, 26 Sep 2019 23:23:18 +0530</pubDate>
+      
+      <guid>http://example.org/posts/docker-getting-started/</guid>
+      <description>What is Docker?
+Docker is a set of platform-as-a-service products that use OS-level virtualization to deliver software in packages called containers. Containers are isolated from one another and bundle their own software, libraries and configuration files; they can communicate with each other through well-defined channels.
+What is a container?
+A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another.</description>
+    </item>
+    
+  </channel>
+</rss>

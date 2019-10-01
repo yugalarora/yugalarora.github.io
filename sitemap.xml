@@ -3,26 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/posts/docker-getting-started/</loc>
+    <loc>http://www.yugalarora.com/posts/docker-getting-started/</loc>
     <lastmod>2019-09-26T23:23:18+05:30</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/posts/</loc>
+    <loc>http://www.yugalarora.com/posts/</loc>
     <lastmod>2019-09-26T23:23:18+05:30</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/</loc>
+    <loc>http://www.yugalarora.com/</loc>
     <lastmod>2019-09-26T23:23:18+05:30</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/categories/</loc>
+    <loc>http://www.yugalarora.com/categories/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/tags/</loc>
+    <loc>http://www.yugalarora.com/tags/</loc>
   </url>
   
 </urlset>

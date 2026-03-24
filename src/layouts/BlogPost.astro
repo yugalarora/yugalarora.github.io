@@ -1,5 +1,6 @@
 ---
 import Base from './Base.astro';
+import { generateBlogPostingSchema } from '../lib/schema';
 
 interface Props {
   title: string;
@@ -7,9 +8,25 @@ interface Props {
   date: Date;
   tags: string[];
   image?: string;
+  ogImage?: string;
+  canonicalURL?: string;
 }
 
-const { title, description, date, tags, image } = Astro.props;
+const { title, description, date, tags, image, ogImage, canonicalURL } = Astro.props;
+
+const resolvedImage = ogImage ?? image ?? '/og-default.svg';
+
+const postUrl = new URL(Astro.url.pathname, Astro.site).href;
+const absoluteImage = new URL(resolvedImage, Astro.site).href;
+
+const schema = generateBlogPostingSchema({
+  title,
+  description,
+  datePublished: date.toISOString(),
+  url: postUrl,
+  image: absoluteImage,
+  tags: tags.length > 0 ? tags : undefined,
+});
 
 const formattedDate = date.toLocaleDateString('en-US', {
   year: 'numeric',
@@ -18,7 +35,7 @@ const formattedDate = date.toLocaleDateString('en-US', {
 });
 ---
 
-<Base title={title} description={description} image={image}>
+<Base title={title} description={description} image={resolvedImage} type="article" canonicalURL={canonicalURL} schema={schema}>
   <article>
     <header class="mb-8">
       <p class="text-terminal-dim text-sm mb-2">

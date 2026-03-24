@@ -1,8 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
+import { generatePersonSchema } from '../lib/schema';
+
+const schema = generatePersonSchema(
+  'Yugal Arora',
+  'https://yugalarora.com',
+  'Systems Engineer',
+  [
+    'https://github.com/yugalarora',
+    'https://www.linkedin.com/in/yugal-arora-b0319958/'
+  ]
+);
 ---
 
-<Base title="About">
+<Base title="About" schema={schema}>
   <div class="mb-6 text-terminal-dim text-sm">
     <span class="text-terminal-green">$</span> cat ./about.md
   </div>

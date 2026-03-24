@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: string;
+  canonicalURL?: string;
+  schema?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description,
+  image,
+  type = 'website',
+  canonicalURL,
+  schema,
+} = Astro.props;
+
+const resolvedCanonical = canonicalURL ?? new URL(Astro.url.pathname, Astro.site).href;
+const resolvedImage = image
+  ? new URL(image, Astro.site).href
+  : new URL('/og-default.svg', Astro.site).href;
+---
+
+<!-- Global -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+<title>{title} | yugalarora.com</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={resolvedCanonical} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={resolvedCanonical} />
+<meta property="og:type" content={type} />
+<meta property="og:image" content={resolvedImage} />
+<meta property="og:site_name" content="yugalarora.com" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={resolvedImage} />
+
+<!-- JSON-LD -->
+{schema && (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+)}

@@ -8,10 +8,17 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^5.7.0",
-    "@astrojs/tailwind": "^6.0.2",
+    "@astrojs/check": "^0.9.8",
     "@astrojs/mdx": "^4.2.0",
+    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.7.0",
+    "sharp": "^0.33.0",
     "tailwindcss": "^3.4.17",
-    "sharp": "^0.33.0"
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "fast-check": "^4.6.0",
+    "vitest": "^4.1.1"
   }
 }

@@ -1,14 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
+import { generateWebSiteSchema } from '../lib/schema';
 
 const posts = (await getCollection('blog'))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 5);
+
+const schema = generateWebSiteSchema(
+  'https://yugalarora.com',
+  'yugalarora.com',
+  'Terminal-grade thoughts on systems, Go, Linux, and the craft of building software.'
+);
 ---
 
-<Base title="Home">
+<Base title="Home" schema={schema}>
   <section class="mb-16">
     <div class="mb-2 text-terminal-dim text-sm">
       <span class="text-terminal-green">$</span> whoami

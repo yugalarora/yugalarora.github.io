@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="404">
+  <div class="text-center py-20">
+    <p class="text-terminal-dim text-sm mb-4">
+      <span class="text-terminal-green">$</span> cat ./page
+    </p>
+    <h1 class="text-6xl font-bold text-terminal-red mb-4">404</h1>
+    <p class="text-terminal-dim mb-8">
+      bash: page: No such file or directory
+    </p>
+    <a
+      href="/"
+      class="text-terminal-green hover:glow-green transition-all text-sm"
+    >
+      cd ~
+    </a>
+  </div>
+</Base>

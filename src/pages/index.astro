@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 5);
+---
+
+<Base title="Home">
+  <section class="mb-16">
+    <div class="mb-2 text-terminal-dim text-sm">
+      <span class="text-terminal-green">$</span> whoami
+    </div>
+    <h1 class="text-3xl font-bold text-terminal-green glow-green mb-4">
+      Yugal Arora
+    </h1>
+    <p class="text-terminal-text leading-relaxed mb-6">
+      Systems engineer. Building developer tools, MCP servers, and infrastructure
+      that scales. I think in Go, live in the terminal, and occasionally save the
+      world in open-world RPGs.
+    </p>
+    <div class="flex gap-3 text-sm">
+      <span class="text-terminal-cyan">go</span>
+      <span class="text-terminal-dim">·</span>
+      <span class="text-terminal-magenta">linux</span>
+      <span class="text-terminal-dim">·</span>
+      <span class="text-terminal-amber">mcp</span>
+      <span class="text-terminal-dim">·</span>
+      <span class="text-terminal-red">infra</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="mb-4 text-terminal-dim text-sm">
+      <span class="text-terminal-green">$</span> ls ./recent-posts
+    </div>
+
+    {posts.length === 0 && (
+      <p class="text-terminal-dim italic">No posts yet. Check back soon.</p>
+    )}
+
+    <ul class="space-y-4">
+      {posts.map((post) => (
+        <li>
+          <a
+            href={`/blog/${post.id}`}
+            class="group block p-4 border border-terminal-border rounded-lg hover:border-terminal-green/30 transition-all bg-terminal-surface/50"
+          >
+            <div class="flex items-baseline justify-between gap-4">
+              <h2 class="text-terminal-text group-hover:text-terminal-green transition-colors font-medium">
+                {post.data.title}
+              </h2>
+              <time
+                datetime={post.data.date.toISOString()}
+                class="text-terminal-dim text-xs whitespace-nowrap"
+              >
+                {post.data.date.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                })}
+              </time>
+            </div>
+            <p class="text-terminal-dim text-sm mt-1">{post.data.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    {posts.length > 0 && (
+      <a
+        href="/blog"
+        class="inline-block mt-6 text-sm text-terminal-cyan hover:glow-cyan transition-all"
+      >
+        → view all posts
+      </a>
+    )}
+  </section>
+</Base>

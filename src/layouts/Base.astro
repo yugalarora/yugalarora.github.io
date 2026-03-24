@@ -1,0 +1,66 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+import '../styles/global.css';
+
+const { title, description = 'Terminal-grade thoughts on systems, Go, Linux, and the craft of building software.', image } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | yugalarora.com</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {image && <meta property="og:image" content={new URL(image, Astro.site)} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
+  <body class="crt min-h-screen bg-terminal-bg text-terminal-text font-mono antialiased">
+    <div class="max-w-5xl mx-auto px-6 sm:px-10 lg:px-16">
+      <header class="py-8 border-b border-terminal-border mb-8">
+        <nav class="flex items-center justify-between">
+          <a href="/" class="text-terminal-green glow-green text-lg font-bold hover:animate-glow transition-all">
+            ~/yugal
+          </a>
+          <div class="flex gap-6 text-sm">
+            <a href="/" class="text-terminal-dim hover:text-terminal-green transition-colors">home</a>
+            <a href="/blog" class="text-terminal-dim hover:text-terminal-green transition-colors">blog</a>
+            <a href="/about" class="text-terminal-dim hover:text-terminal-green transition-colors">about</a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="min-h-[60vh]">
+        <slot />
+      </main>
+
+      <footer class="py-8 mt-16 border-t border-terminal-border text-terminal-dim text-xs">
+        <div class="flex justify-between items-center">
+          <span>© {new Date().getFullYear()} yugal arora</span>
+          <div class="flex gap-4">
+            <a href="https://github.com/yugalarora" class="hover:text-terminal-green transition-colors">github</a>
+            <a href="https://www.linkedin.com/in/yugal-arora-b0319958/" class="hover:text-terminal-green transition-colors">linkedin</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
